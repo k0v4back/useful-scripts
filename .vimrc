@@ -1,5 +1,7 @@
 call plug#begin('~/.vim/plugged')
 
+Plug 'arcticicestudio/nord-vim'
+
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -252,3 +254,8 @@ nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
 map <C-n> :NERDTreeToggle<CR>
 nmap <Leader>r :NERDTreeFocus<cr>R<c-w><c-p>
+
+" Cscope Key Map
+call plug#begin('~/.vim/plugged')
+Plug 'joe-skb7/cscope-maps'
+call plug#end()
