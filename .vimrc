@@ -9,6 +9,11 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'jackguo380/vim-lsp-cxx-highlight'
 
 Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
+Plug 'preservim/tagbar'
+
+Plug 'joe-skb7/cscope-maps'
 
 "colorschemes
 Plug 'joshdick/onedark.vim'
@@ -32,8 +37,10 @@ if (empty($TMUX))
 endif
 
 syntax on
-colorscheme onedark
-set background=dark
+"colorscheme onedark
+"set background=dark
+set paste
+set pastetoggle=<F2>
 set number
 set expandtab
 set tabstop=4
@@ -48,8 +55,6 @@ augroup END
 "set nu rnu
 
 "inoremap <C-Space> <C-o><a>
-
-"let g:airline_theme='onedark'
 
 highlight LspCxxHlSymField guifg=#E06C75
 highlight LspCxxHlSymNamespace guifg=#E06C75
@@ -83,6 +88,96 @@ let g:airline_right_alt_sep = ''
 let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
+
+"Airline Themes
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+"let g:airline_theme='dark'
+"let g:airline_theme='badwolf'
+"let g:airline_theme='ravenpower'
+"let g:airline_theme='simple'
+"let g:airline_theme='term'
+"let g:airline_theme='ubaryd'
+"let g:airline_theme='laederon'
+"let g:airline_theme='kolor'
+"let g:airline_theme='molokai'
+"let g:airline_theme='powerlineish'
+
+"colorscheme wombat256
+"colorscheme tango
+"colorscheme railscasts
+"colorscheme vividchalk
+"colorscheme distinguished
+"colorscheme monokai
+"colorscheme molokai
+"colorscheme ir_black
+"colorscheme neodark
+colorscheme onedark
+"colorscheme kolor
+"colorscheme gotham
+"colorscheme jellybeans 
+"volorscheme desertEx
+"colorscheme skittles_berry
+"colorscheme skittles_dark
+"colorscheme codeblocks_dark
+
+" Key mappings
+	" Set Leader to Space
+		let mapleader = "\<Space>"
+
+	" I hate the Escape key
+		imap <leader>q \<Esc>
+		inoremap jj \<Esc>
+
+	" tab stuff
+		nnoremap tn :tabnew<cr>
+		nnoremap tk :tabnext<cr>
+		nnoremap tj :tabprev<cr>
+		nnoremap th :tabfirst<cr>
+		nnoremap tl :tablast<cr>
+
+	" space-s to save
+		nnoremap <leader>s :w<cr>
+
+	" space-q to quit (doesn't save, watch out!)
+		nnoremap <leader>q :q!<cr>
+
+" Commenting
+	
+	" space-1 insert "!" commenting
+		nnoremap <leader>1 :norm i!<cr>
+		vnoremap <leader>1 :norm i!<cr>
+
+	" space-' insert """ commenting
+		nnoremap <leader>' :norm i"<cr>
+		vnoremap <leader>' :norm i"<cr>
+
+	" space-3 insert "#" commenting
+		nnoremap <leader>3 :norm i#<cr>
+		vnoremap <leader>3 :norm i#<cr>
+
+	" space-- insert "--" commenting
+		nnoremap <leader>- :norm i--<cr>
+		vnoremap <leader>- :norm i--<cr>
+
+	" space-6 uncomment
+		nnoremap <leader>6 :norm ^x<cr>
+		vnoremap <leader>6 :norm ^x<cr>
+
+	" edit config files
+		nnoremap <leader>ez :tabnew ~/.zshrc<cr>
+
+" Convenience
+	nmap G Gzz
+	nmap n nzz
+	nmap N Nzz
+
+" Quick pairs
+	imap <leader>' ''<ESC>i
+	imap <leader>" ""<ESC>i
+	imap <leader>( ()<ESC>i
+	imap <leader>[ {}<ESC>i
+
 
 " Set internal encoding of vim, not needed on neovim, since coc.nvim using some
 " unicode characters in the file autoload/float.vim
@@ -254,8 +349,4 @@ nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
 map <C-n> :NERDTreeToggle<CR>
 nmap <Leader>r :NERDTreeFocus<cr>R<c-w><c-p>
-
-" Cscope Key Map
-call plug#begin('~/.vim/plugged')
-Plug 'joe-skb7/cscope-maps'
-call plug#end()
+nmap <F8> :TagbarToggle<CR>
