@@ -5,7 +5,7 @@ read FILE_NAME
 
 umount /tmp
 mount /dev/mmcblk0p1 /tmp
-cp FILE_NAME /tmp
+cp $FILE_NAME /tmp
 sync
 umount /tmp
 echo 4 > /proc/sys/kernel/printk
